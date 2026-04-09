@@ -1,0 +1,206 @@
+[
+  {
+    "id": "tab_embedded_servo",
+    "type": "tab",
+    "label": "ESP Servo MQTT Clean",
+    "disabled": false,
+    "info": ""
+  },
+  {
+    "id": "broker_embedded_servo",
+    "type": "mqtt-broker",
+    "name": "Local MQTT Broker",
+    "broker": "192.168.4.1",
+    "port": "1883",
+    "clientid": "",
+    "usetls": false,
+    "protocolVersion": "4",
+    "keepalive": "60",
+    "cleansession": true,
+    "birthTopic": "",
+    "birthQos": "0",
+    "birthPayload": "",
+    "closeTopic": "",
+    "closeQos": "0",
+    "closePayload": "",
+    "willTopic": "",
+    "willQos": "0",
+    "willPayload": ""
+  },
+  {
+    "id": "inject_esp32_wave_clean",
+    "type": "inject",
+    "z": "tab_embedded_servo",
+    "name": "ESP32 Wave",
+    "props": [
+      {
+        "p": "payload"
+      }
+    ],
+    "payload": "wave",
+    "payloadType": "str",
+    "x": 130,
+    "y": 80,
+    "wires": [
+      [
+        "mqtt_out_esp32_clean"
+      ]
+    ]
+  },
+  {
+    "id": "inject_esp32_center_clean",
+    "type": "inject",
+    "z": "tab_embedded_servo",
+    "name": "ESP32 Center",
+    "props": [
+      {
+        "p": "payload"
+      }
+    ],
+    "payload": "center",
+    "payloadType": "str",
+    "x": 135,
+    "y": 130,
+    "wires": [
+      [
+        "mqtt_out_esp32_clean"
+      ]
+    ]
+  },
+  {
+    "id": "inject_esp8266_wave_clean",
+    "type": "inject",
+    "z": "tab_embedded_servo",
+    "name": "ESP8266 Wave",
+    "props": [
+      {
+        "p": "payload"
+      }
+    ],
+    "payload": "wave",
+    "payloadType": "str",
+    "x": 140,
+    "y": 200,
+    "wires": [
+      [
+        "mqtt_out_esp8266_clean"
+      ]
+    ]
+  },
+  {
+    "id": "inject_esp8266_center_clean",
+    "type": "inject",
+    "z": "tab_embedded_servo",
+    "name": "ESP8266 Center",
+    "props": [
+      {
+        "p": "payload"
+      }
+    ],
+    "payload": "center",
+    "payloadType": "str",
+    "x": 145,
+    "y": 250,
+    "wires": [
+      [
+        "mqtt_out_esp8266_clean"
+      ]
+    ]
+  },
+  {
+    "id": "mqtt_out_esp32_clean",
+    "type": "mqtt out",
+    "z": "tab_embedded_servo",
+    "name": "ESP32 CMD",
+    "topic": "servo/esp32/cmd",
+    "qos": "",
+    "retain": "",
+    "broker": "broker_embedded_servo",
+    "x": 360,
+    "y": 105,
+    "wires": []
+  },
+  {
+    "id": "mqtt_out_esp8266_clean",
+    "type": "mqtt out",
+    "z": "tab_embedded_servo",
+    "name": "ESP8266 CMD",
+    "topic": "servo/esp8266/cmd",
+    "qos": "",
+    "retain": "",
+    "broker": "broker_embedded_servo",
+    "x": 370,
+    "y": 225,
+    "wires": []
+  },
+  {
+    "id": "mqtt_in_esp32_clean",
+    "type": "mqtt in",
+    "z": "tab_embedded_servo",
+    "name": "ESP32 RESP",
+    "topic": "servo/esp32/response",
+    "qos": "0",
+    "datatype": "auto",
+    "broker": "broker_embedded_servo",
+    "nl": false,
+    "rap": true,
+    "rh": 0,
+    "x": 140,
+    "y": 340,
+    "wires": [
+      [
+        "debug_esp32_clean"
+      ]
+    ]
+  },
+  {
+    "id": "mqtt_in_esp8266_clean",
+    "type": "mqtt in",
+    "z": "tab_embedded_servo",
+    "name": "ESP8266 RESP",
+    "topic": "servo/esp8266/response",
+    "qos": "0",
+    "datatype": "auto",
+    "broker": "broker_embedded_servo",
+    "nl": false,
+    "rap": true,
+    "rh": 0,
+    "x": 145,
+    "y": 390,
+    "wires": [
+      [
+        "debug_esp8266_clean"
+      ]
+    ]
+  },
+  {
+    "id": "debug_esp32_clean",
+    "type": "debug",
+    "z": "tab_embedded_servo",
+    "name": "ESP32 Response",
+    "active": true,
+    "tosidebar": true,
+    "console": false,
+    "tostatus": false,
+    "complete": "payload",
+    "targetType": "msg",
+    "x": 380,
+    "y": 340,
+    "wires": []
+  },
+  {
+    "id": "debug_esp8266_clean",
+    "type": "debug",
+    "z": "tab_embedded_servo",
+    "name": "ESP8266 Response",
+    "active": true,
+    "tosidebar": true,
+    "console": false,
+    "tostatus": false,
+    "complete": "payload",
+    "targetType": "msg",
+    "x": 390,
+    "y": 390,
+    "wires": []
+  }
+]
